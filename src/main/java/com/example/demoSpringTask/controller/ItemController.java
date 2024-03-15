@@ -10,18 +10,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/store/order/")
-public class itemController {
+@RequestMapping("/store/order")
+public class ItemController {
 
     private final ItemService itemService;
 
-    public itemController(ItemService itemService) {
+    public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
 
     @GetMapping("/add")
-    public void addItem(@RequestParam List<Long> items) {
-        itemService.add(items);
+    public void addItem(@RequestParam List<Long> ids) {
+        itemService.add(ids);
     }
 
     @GetMapping("/get")

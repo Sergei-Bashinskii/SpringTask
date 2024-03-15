@@ -1,5 +1,6 @@
 package com.example.demoSpringTask.service;
 
+import com.example.demoSpringTask.storages.ItemStorage;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -7,19 +8,17 @@ import java.util.*;
 @Service
 public class ItemService {
 
-    private final Map<Long, Integer> items = new HashMap<>();
+    private final ItemStorage itemStorage;
+
+    public ItemService(ItemStorage itemStorage) {
+        this.itemStorage = itemStorage;
+    }
 
     public void add(List<Long> ids) {
-        for (Long id : ids) {
-            if (items.containsKey(id)) {
-                items.put(id, items.get(id) + 1);
-            } else {
-                items.put(id, 1);
-            }
-        }
+        itemStorage.add(ids);
     }
 
     public Map<Long, Integer> getAll() {
-        return items;
+        return itemStorage.getAll();
     }
 }
